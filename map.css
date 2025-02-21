@@ -29,3 +29,10 @@ body {
     height: 100%;
     pointer-events: none;
   }
+
+circle {
+    fill: steelblue;
+    stroke: white;
+    fill-opacity: 0.6;
+    pointer-events: auto;
+}
