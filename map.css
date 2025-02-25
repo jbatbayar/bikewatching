@@ -7,19 +7,14 @@ body {
     display: flex;
     justify-content: center;
     /* Center horizontally */
-    align-items: center;
+    /* align-items: center; */
     /* Center vertically */
 }
 
 #map {
     width: 100%;
-    /* Adjust width to your desired size */
     height: 100%;
-    /* Adjust height to your desired size */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Optional: subtle shadow for effect */
-    border-radius: 8px;
-    /* Optional: rounded corners */
 }
 
 #map svg {
@@ -28,10 +23,46 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    .circle {
-        fill: steelblue;
-        stroke: white;
-        fill-opacity: 0.6;
-        pointer-events: auto;
-    }
   }
+
+#map svg circle {
+    fill: steelblue;
+    stroke: white;
+    fill-opacity: 0.6;
+    pointer-events: auto;
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+    fill: var(--color);
+}
+
+.legend > div {
+    flex: 1;
+    padding: 8px 16px;
+    text-align: center;
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    background: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+    font-weight: bold;
+    color: white;
+}
+
+.legend > div:nth-child(1) {
+    text-align: left;
+}
+
+.legend > div:nth-child(2) {
+    text-align: center;
+}
+
+.legend > div:nth-child(3) {
+    text-align: right;
+}
